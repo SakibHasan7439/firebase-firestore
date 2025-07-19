@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@layer components {
+    input {
+        @apply border-2 rounded-md border-slate-700 p-2 m-4;
+    }
+
+    button {
+        @apply font-bold border-2 px-3 py-1 rounded-md cursor-pointer;
+    }
+
+    form {
+        @apply flex flex-col gap-4 p-6 max-w-[500px] mx-auto border-2 border-slate-900 rounded-md;
+    }
+}
