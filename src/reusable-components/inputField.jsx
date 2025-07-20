@@ -1,6 +1,6 @@
 import React from 'react';
 
-const inputField = ({type, className, value, onChange, placeholder}) => {
+const InputField = ({type, className, value, onChange, placeholder}) => {
     return (
         <input 
             type={type} 
@@ -12,4 +12,4 @@ const inputField = ({type, className, value, onChange, placeholder}) => {
     );
 };
 
-export default inputField;
+export default InputField;

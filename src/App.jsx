@@ -1,4 +1,5 @@
 import { useState } from "react"
+import InputField from "./reusable-components/inputField";
 
 function App() {
 
@@ -6,7 +7,17 @@ function App() {
   const [cityName, setCityName] = useState('');
   const [famous, setFamous] = useState('');
 
-  
+  const handleFormSubmit = (e) =>{
+    e.preventDefault();
+    if(cityName !== "" && famous !== ""){
+      alert("Form Submitted successfully");
+      console.table({cityName, famous});
+      setCityName('');
+      setFamous('');
+    }else{
+      alert("please fill all the input fields");
+    }
+  }
 
   return (
     <div className='text-center mt-10'>
@@ -14,9 +25,19 @@ function App() {
         firebase fireStore
       </h1>
 
-      <form>
-        <input type="text" placeholder="Enter city name..." />
-        <input type="text" placeholder="Famous for..." />
+      <form onSubmit={handleFormSubmit}>
+        <InputField 
+          type={"text"}
+          value={cityName}
+          placeholder={"Enter city name..."}
+          onChange={(e)=>setCityName(e.target.value)}
+        />
+        <InputField 
+          type={"text"}
+          value={famous}
+          placeholder={"City Famous For..."}
+          onChange={(e)=>setFamous(e.target.value)}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
