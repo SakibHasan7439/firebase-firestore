@@ -1,5 +1,7 @@
 import { useState } from "react"
 import InputField from "./reusable-components/inputField";
+import { addDoc, collection } from "firebase/firestore";
+import db from "./firebase/firebase.config";
 
 function App() {
 
@@ -7,13 +9,26 @@ function App() {
   const [cityName, setCityName] = useState('');
   const [famous, setFamous] = useState('');
 
-  const handleFormSubmit = (e) =>{
+  // const [data, setData] = useState([]);
+
+  const handleFormSubmit = async(e) =>{
     e.preventDefault();
     if(cityName !== "" && famous !== ""){
-      alert("Form Submitted successfully");
-      console.table({cityName, famous});
-      setCityName('');
-      setFamous('');
+      try {
+        const dataRef = await addDoc(collection(db, "famous_cities"), {
+          city: cityName, 
+          famous_for: famous
+        });
+        if(dataRef.id){
+          alert("Data successfully added in firebase fireStore");
+        }
+        setCityName('');
+        setFamous('');
+
+      } catch (error) {
+        console.log(error);
+      }
+
     }else{
       alert("please fill all the input fields");
     }
